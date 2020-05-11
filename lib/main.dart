@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -46,15 +44,15 @@ class MyHomePage extends StatelessWidget {
 class MySpecialHeading extends StatelessWidget {
 
    Color decideColor(WeatherInfo info) {
-     return info.temperatureType=="celcius"?Colors.blue:Colors.indigo;
+     return info.temperatureType=="celcius"?Colors.green:Colors.deepOrange;
      }
   @override
   Widget build(BuildContext context) {
     var weatherInfo= Provider.of<WeatherInfo>(context);
     return Padding(
       padding: EdgeInsets.all(8.0),
-      child:Consumer(builder: (context,weatherInfo,_)=> Text(weatherInfo.temperatureType,style: TextStyle(fontSize:25,color: Colors.deepOrange),),
-    ));
+      child:Consumer<WeatherInfo>(builder:(context,weatherInfo,_)=>Text(weatherInfo.temperatureType,style: TextStyle(fontSize:25,color:decideColor(weatherInfo)),),
+      ));
   }
 }
 
